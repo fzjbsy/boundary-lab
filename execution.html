@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Execution Adapter · Boundary Lab</title>
+<meta name="description" content="Execution Adapter reduces execution errors without replacing human judgment.">
+
+<style>
+/* === 与 firewall.html 完全一致的样式体系 === */
+:root {
+  --bg-main: #f4f6f8;
+  --bg-card: #ffffff;
+  --bg-dark: #0b1220;
+  --text-main: #0b1220;
+  --text-muted: #5b6472;
+  --border: #e2e6eb;
+}
+[data-theme="dark"] {
+  --bg-main: #0b1220;
+  --bg-card: #111827;
+  --bg-dark: #020617;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border: #1f2933;
+}
+[data-theme="paper"] {
+  --bg-main: #fbf7f2;
+  --bg-card: #ffffff;
+  --bg-dark: #2b2118;
+  --text-main: #2b2118;
+  --text-muted: #6b5e53;
+  --border: #e5dccc;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+  "PingFang SC","Microsoft YaHei","Noto Sans JP",Arial,sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.75;
+}
+main { max-width: 960px; margin: 0 auto; padding: 72px 20px; }
+section { margin-bottom: 88px; }
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.6rem; }
+p { margin: 12px 0; }
+ul { padding-left: 20px; }
+li { margin: 8px 0; }
+.muted { color: var(--text-muted); }
+.hero {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 56px 36px;
+  position: relative;
+}
+.controls {
+  position: absolute; top: 18px; right: 24px;
+  display: flex; gap: 12px; font-size: 0.85rem;
+}
+.controls span { cursor: pointer; color: var(--text-muted); }
+.controls span.active { color: var(--text-main); font-weight: 600; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  margin-top: 24px;
+}
+footer {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+</style>
+</head>
+
+<body data-theme="light">
+<main>
+
+<section class="hero">
+  <div class="controls">
+    <span data-lang="zh">中文</span>
+    <span data-lang="en" class="active">EN</span>
+    <span data-lang="ja">日本語</span>
+    |
+    <span data-theme-btn="light" class="active">Light</span>
+    <span data-theme-btn="dark">Dark</span>
+    <span data-theme-btn="paper">Paper</span>
+  </div>
+
+  <p class="muted" data-i18n="company"></p>
+  <h1 data-i18n="title"></h1>
+  <p class="muted" data-i18n="subtitle"></p>
+</section>
+
+<section>
+  <h2 data-i18n="what_title"></h2>
+  <p data-i18n="what_desc"></p>
+</section>
+
+<section>
+  <h2 data-i18n="can_title"></h2>
+  <ul>
+    <li data-i18n="can1"></li>
+    <li data-i18n="can2"></li>
+    <li data-i18n="can3"></li>
+  </ul>
+</section>
+
+<section>
+  <h2 data-i18n="limit_title"></h2>
+  <p data-i18n="limit_desc"></p>
+</section>
+
+<footer>
+  <p data-i18n="footer"></p>
+</footer>
+
+</main>
+
+<script>
+const i18n = {
+  en: {
+    company: "Boundary Lab · Decision Safety Infrastructure",
+    title: "Execution Adapter",
+    subtitle: "Reduce execution errors under strict rules",
+    what_title: "What is this?",
+    what_desc: "Execution Adapter is an optional module that executes decisions only within predefined rules.",
+    can_title: "What it can do",
+    can1: "Reduce manual execution mistakes",
+    can2: "Enforce pre-defined constraints",
+    can3: "Prevent accidental violations",
+    limit_title: "What it will never be",
+    limit_desc: "This is not an automatic trading system and does not replace human judgment.",
+    footer: "© 2026 Boundary Lab. All rights reserved."
+  },
+  zh: {
+    company: "Boundary Lab · 边界实验室",
+    title: "执行接口",
+    subtitle: "在规则约束下降低执行错误",
+    what_title: "这是什么？",
+    what_desc: "执行接口是在预设规则下执行决策的可选模块。",
+    can_title: "它可以做什么",
+    can1: "减少人工执行错误",
+    can2: "强制执行规则约束",
+    can3: "防止误操作",
+    limit_title: "它永远不会是什么",
+    limit_desc: "它不是自动交易系统，也不会替代人的判断。",
+    footer: "© 2026 Boundary Lab｜边界实验室"
+  },
+  ja: {
+    company: "Boundary Lab · 境界研究所",
+    title: "実行アダプター",
+    subtitle: "ルール下で実行ミスを減らす",
+    what_title: "これは何ですか？",
+    what_desc: "事前定義されたルール内でのみ実行するオプションモジュールです。",
+    can_title: "できること",
+    can1: "実行ミスの削減",
+    can2: "制約の強制",
+    can3: "誤操作防止",
+    limit_title: "決してしないこと",
+    limit_desc: "自動売買でも判断代行でもありません。",
+    footer: "© 2026 Boundary Lab"
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=i18n[lang][e.dataset.i18n]);
+  document.querySelectorAll("[data-lang]").forEach(e=>e.classList.toggle("active",e.dataset.lang===lang));
+  localStorage.setItem("lang",lang);
+}
+function setTheme(t){
+  document.body.setAttribute("data-theme",t);
+  document.querySelectorAll("[data-theme-btn]").forEach(e=>e.classList.toggle("active",e.dataset.themeBtn===t));
+  localStorage.setItem("theme",t);
+}
+document.querySelectorAll("[data-lang]").forEach(e=>e.onclick=()=>setLang(e.dataset.lang));
+document.querySelectorAll("[data-theme-btn]").forEach(e=>e.onclick=()=>setTheme(e.dataset.themeBtn));
+setLang(localStorage.getItem("lang")||"en");
+setTheme(localStorage.getItem("theme")||"light");
+</script>
+
+</body>
+</html>

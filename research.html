@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Strategy Research Lab · Boundary Lab</title>
+<meta name="description" content="Strategy Research Lab focuses on worst-case validation, not profit optimization.">
+
+<style>
+/* === 与 firewall.html 完全一致的样式体系 === */
+:root {
+  --bg-main: #f4f6f8;
+  --bg-card: #ffffff;
+  --bg-dark: #0b1220;
+  --text-main: #0b1220;
+  --text-muted: #5b6472;
+  --border: #e2e6eb;
+}
+[data-theme="dark"] {
+  --bg-main: #0b1220;
+  --bg-card: #111827;
+  --bg-dark: #020617;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border: #1f2933;
+}
+[data-theme="paper"] {
+  --bg-main: #fbf7f2;
+  --bg-card: #ffffff;
+  --bg-dark: #2b2118;
+  --text-main: #2b2118;
+  --text-muted: #6b5e53;
+  --border: #e5dccc;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+  "PingFang SC","Microsoft YaHei","Noto Sans JP",Arial,sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.75;
+}
+main { max-width: 960px; margin: 0 auto; padding: 72px 20px; }
+section { margin-bottom: 88px; }
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.6rem; }
+p { margin: 12px 0; }
+ul { padding-left: 20px; }
+li { margin: 8px 0; }
+.muted { color: var(--text-muted); }
+.hero {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 56px 36px;
+  position: relative;
+}
+.controls {
+  position: absolute; top: 18px; right: 24px;
+  display: flex; gap: 12px; font-size: 0.85rem;
+}
+.controls span { cursor: pointer; color: var(--text-muted); }
+.controls span.active { color: var(--text-main); font-weight: 600; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  margin-top: 24px;
+}
+footer {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+</style>
+</head>
+
+<body data-theme="light">
+<main>
+
+<section class="hero">
+  <div class="controls">
+    <span data-lang="zh">中文</span>
+    <span data-lang="en" class="active">EN</span>
+    <span data-lang="ja">日本語</span>
+    |
+    <span data-theme-btn="light" class="active">Light</span>
+    <span data-theme-btn="dark">Dark</span>
+    <span data-theme-btn="paper">Paper</span>
+  </div>
+
+  <p class="muted" data-i18n="company"></p>
+  <h1 data-i18n="title"></h1>
+  <p class="muted" data-i18n="subtitle"></p>
+</section>
+
+<section>
+  <h2 data-i18n="what_title"></h2>
+  <p data-i18n="what_desc"></p>
+</section>
+
+<section>
+  <h2 data-i18n="focus_title"></h2>
+  <ul>
+    <li data-i18n="focus1"></li>
+    <li data-i18n="focus2"></li>
+    <li data-i18n="focus3"></li>
+    <li data-i18n="focus4"></li>
+  </ul>
+</section>
+
+<section>
+  <h2 data-i18n="not_title"></h2>
+  <ul>
+    <li data-i18n="not1"></li>
+    <li data-i18n="not2"></li>
+    <li data-i18n="not3"></li>
+  </ul>
+</section>
+
+<footer>
+  <p data-i18n="footer"></p>
+</footer>
+
+</main>
+
+<script>
+const i18n = {
+  en: {
+    company: "Boundary Lab · Decision Safety Infrastructure",
+    title: "Strategy Research Lab",
+    subtitle: "Validate survivability, not profitability",
+    what_title: "What is this?",
+    what_desc: "Strategy Research Lab is a research environment designed to identify strategies that are structurally unsafe.",
+    focus_title: "What we focus on",
+    focus1: "Worst-case scenarios",
+    focus2: "Maximum drawdown",
+    focus3: "Elimination paths",
+    focus4: "Behavioral risk",
+    not_title: "What we intentionally avoid",
+    not1: "Profit optimization",
+    not2: "Parameter tuning",
+    not3: "Winning rate obsession",
+    footer: "© 2026 Boundary Lab. All rights reserved."
+  },
+  zh: {
+    company: "Boundary Lab · 边界实验室",
+    title: "策略研究工具",
+    subtitle: "验证生存性，而不是盈利性",
+    what_title: "这是什么？",
+    what_desc: "这是一个用于识别结构性危险策略的研究环境。",
+    focus_title: "我们关注什么",
+    focus1: "最坏情况",
+    focus2: "最大回撤",
+    focus3: "出局路径",
+    focus4: "行为风险",
+    not_title: "我们刻意不做的事",
+    not1: "收益最大化",
+    not2: "参数调优",
+    not3: "胜率迷信",
+    footer: "© 2026 Boundary Lab｜边界实验室"
+  },
+  ja: {
+    company: "Boundary Lab · 境界研究所",
+    title: "戦略リサーチラボ",
+    subtitle: "収益ではなく生存性を検証",
+    what_title: "これは何ですか？",
+    what_desc: "構造的に危険な戦略を見極める研究環境です。",
+    focus_title: "重視する点",
+    focus1: "最悪ケース",
+    focus2: "最大ドローダウン",
+    focus3: "退場経路",
+    focus4: "行動リスク",
+    not_title: "意図的に行わないこと",
+    not1: "利益最適化",
+    not2: "パラメータ調整",
+    not3: "勝率重視",
+    footer: "© 2026 Boundary Lab"
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=i18n[lang][e.dataset.i18n]);
+  document.querySelectorAll("[data-lang]").forEach(e=>e.classList.toggle("active",e.dataset.lang===lang));
+  localStorage.setItem("lang",lang);
+}
+function setTheme(t){
+  document.body.setAttribute("data-theme",t);
+  document.querySelectorAll("[data-theme-btn]").forEach(e=>e.classList.toggle("active",e.dataset.themeBtn===t));
+  localStorage.setItem("theme",t);
+}
+document.querySelectorAll("[data-lang]").forEach(e=>e.onclick=()=>setLang(e.dataset.lang));
+document.querySelectorAll("[data-theme-btn]").forEach(e=>e.onclick=()=>setTheme(e.dataset.themeBtn));
+setLang(localStorage.getItem("lang")||"en");
+setTheme(localStorage.getItem("theme")||"light");
+</script>
+
+</body>
+</html>
