@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Boundary Lab · Decision Safety Infrastructure</title>
+<meta name="description" content="Boundary Lab is a decision safety infrastructure company. We protect long-term rationality through rules.">
+
+<style>
+/* ======================
+   Theme Variables
+====================== */
+
+:root {
+  --bg-main: #f4f6f8;
+  --bg-card: #ffffff;
+  --bg-dark: #0b1220;
+  --text-main: #0b1220;
+  --text-muted: #5b6472;
+  --border: #e2e6eb;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-main: #0b1220;
+  --bg-card: #111827;
+  --bg-dark: #020617;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border: #1f2933;
+}
+
+/* Paper Theme */
+[data-theme="paper"] {
+  --bg-main: #fbf7f2;
+  --bg-card: #ffffff;
+  --bg-dark: #2b2118;
+  --text-main: #2b2118;
+  --text-muted: #6b5e53;
+  --border: #e5dccc;
+}
+
+/* ======================
+   Base Styles
+====================== */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans JP", Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.75;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 72px 20px;
+}
+
+section { margin-bottom: 96px; }
+
+h1 { font-size: 2.6rem; margin-bottom: 12px; }
+h2 { font-size: 1.7rem; margin-bottom: 16px; }
+h3 { font-size: 1.15rem; margin-bottom: 8px; }
+
+p { margin: 12px 0; }
+ul { padding-left: 20px; }
+li { margin: 8px 0; }
+
+.muted { color: var(--text-muted); }
+
+.hero {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 64px 36px;
+  position: relative;
+}
+
+.controls {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  display: flex;
+  gap: 14px;
+  font-size: 0.85rem;
+}
+
+.controls span {
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.controls span.active {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  margin-top: 28px;
+}
+
+footer {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+input[type="email"] {
+  width: 100%;
+  max-width: 360px;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+button {
+  margin-top: 12px;
+  padding: 12px 26px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background: var(--bg-dark);
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.4rem; }
+  main { padding: 48px 16px; }
+  .hero { padding: 36px 22px; }
+  .controls { top: 12px; right: 16px; }
+}
+</style>
+</head>
+
+<body data-theme="light">
+<main>
+
+<section class="hero">
+  <div class="controls">
+    <!-- Language -->
+    <span data-lang="zh">中文</span>
+    <span data-lang="en" class="active">EN</span>
+    <span data-lang="ja">日本語</span>
+    |
+    <!-- Theme -->
+    <span data-theme-btn="light" class="active">Light</span>
+    <span data-theme-btn="dark">Dark</span>
+    <span data-theme-btn="paper">Paper</span>
+  </div>
+
+  <p class="muted" data-i18n="company">Boundary Lab · Decision Safety Infrastructure</p>
+  <h1 data-i18n="title">Decision Safety Infrastructure</h1>
+  <p class="muted" data-i18n="subtitle">
+    Not a trading tool · No strategies · No profit promises
+  </p>
+  <p data-i18n="hero">
+    We protect long-term rationality<br/>
+    in high-risk environments.
+  </p>
+</section>
+
+<section>
+  <h2 data-i18n="problem_title"></h2>
+  <ul>
+    <li data-i18n="p1"></li>
+    <li data-i18n="p2"></li>
+    <li data-i18n="p3"></li>
+  </ul>
+  <p data-i18n="problem_summary"></p>
+</section>
+
+<section>
+  <h2 data-i18n="product_title"></h2>
+
+  <div class="card">
+    <h3 data-i18n="fw_title"></h3>
+    <p data-i18n="fw_desc"></p>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="rl_title"></h3>
+    <p data-i18n="rl_desc"></p>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="ex_title"></h3>
+    <p data-i18n="ex_desc"></p>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="mail_title"></h2>
+  <p data-i18n="mail_desc"></p>
+  <input type="email" data-i18n-placeholder="mail_ph" />
+  <br/>
+  <button data-i18n="mail_btn"></button>
+</section>
+
+<footer>
+  <p data-i18n="footer"></p>
+</footer>
+
+</main>
+
+<script>
+/* ======================
+   Language
+====================== */
+const i18n = {
+  en: {
+    company: "Boundary Lab · Decision Safety Infrastructure",
+    title: "Decision Safety Infrastructure",
+    subtitle: "Not a trading tool · No strategies · No profit promises",
+    hero: "We protect long-term rationality<br/>in high-risk environments.",
+    problem_title: "Failure is rarely about knowledge",
+    p1: "You knew you should not add risk.",
+    p2: "You knew you should stop.",
+    p3: "You knew the risk was excessive.",
+    problem_summary: "The problem is behavior under emotional pressure.",
+    product_title: "Three-Layer System",
+    fw_title: "Trading Firewall",
+    fw_desc: "Enforces rules defined in calm moments.",
+    rl_title: "Research Lab",
+    rl_desc: "Validates whether strategies risk elimination.",
+    ex_title: "Execution Adapter",
+    ex_desc: "Optional execution under strict rules.",
+    mail_title: "Boundary Lab · Research Letters",
+    mail_desc: "Long-term observations on risk and behavior.",
+    mail_ph: "Your email address",
+    mail_btn: "Subscribe",
+    footer: "© 2026 Boundary Lab. All rights reserved."
+  },
+  zh: {
+    company: "Boundary Lab · 边界实验室",
+    title: "交易行为安全系统",
+    subtitle: "不是交易工具 · 不卖策略 · 不承诺收益",
+    hero: "在高风险环境中<br/>用规则，保护长期理性。",
+    problem_title: "失败，往往不是因为不懂",
+    p1: "明知道不该加仓",
+    p2: "明知道该停手",
+    p3: "明知道风险过大",
+    problem_summary: "真正的问题是情绪下的行为。",
+    product_title: "三层系统结构",
+    fw_title: "交易防火墙",
+    fw_desc: "强制执行你在冷静时设定的规则。",
+    rl_title: "策略研究工具",
+    rl_desc: "验证策略是否可能导致出局。",
+    ex_title: "执行接口",
+    ex_desc: "在规则前提下减少执行失误。",
+    mail_title: "Boundary Lab · 长期研究邮件",
+    mail_desc: "分享真实风险路径与行为案例。",
+    mail_ph: "你的邮箱地址",
+    mail_btn: "免费订阅",
+    footer: "© 2026 Boundary Lab｜边界实验室"
+  },
+  ja: {
+    company: "Boundary Lab · 境界研究所",
+    title: "意思決定安全インフラ",
+    subtitle: "取引ツールではありません · 利益保証なし",
+    hero: "高リスク環境で<br/>長期的理性を守る。",
+    problem_title: "失敗は知識不足ではない",
+    p1: "リスクを増やすべきでなかった",
+    p2: "止めるべきだった",
+    p3: "危険すぎたと分かっていた",
+    problem_summary: "感情下の行動が問題です。",
+    product_title: "三層システム",
+    fw_title: "トレーディング・ファイアウォール",
+    fw_desc: "冷静な時に決めたルールを強制。",
+    rl_title: "リサーチラボ",
+    rl_desc: "致命的戦略を検証。",
+    ex_title: "実行アダプター",
+    ex_desc: "厳格なルール下の実行。",
+    mail_title: "Boundary Lab · 研究レター",
+    mail_desc: "誇張なしの長期考察。",
+    mail_ph: "メールアドレス",
+    mail_btn: "登録",
+    footer: "© 2026 Boundary Lab"
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    el.innerHTML = i18n[lang][el.dataset.i18n];
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    el.placeholder = i18n[lang][el.dataset.i18nPlaceholder];
+  });
+  document.querySelectorAll("[data-lang]").forEach(el => {
+    el.classList.toggle("active", el.dataset.lang === lang);
+  });
+  localStorage.setItem("lang", lang);
+}
+
+/* ======================
+   Theme
+====================== */
+function setTheme(theme) {
+  document.body.setAttribute("data-theme", theme);
+  document.querySelectorAll("[data-theme-btn]").forEach(el => {
+    el.classList.toggle("active", el.dataset.themeBtn === theme);
+  });
+  localStorage.setItem("theme", theme);
+}
+
+document.querySelectorAll("[data-lang]").forEach(el =>
+  el.onclick = () => setLang(el.dataset.lang)
+);
+
+document.querySelectorAll("[data-theme-btn]").forEach(el =>
+  el.onclick = () => setTheme(el.dataset.themeBtn)
+);
+
+setLang(localStorage.getItem("lang") || "en");
+setTheme(localStorage.getItem("theme") || "light");
+</script>
+
+</body>
+</html>
