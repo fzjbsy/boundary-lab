@@ -8,10 +8,6 @@
 <meta name="description" content="Boundary Lab is a decision safety infrastructure company. We protect long-term rationality through rules.">
 
 <style>
-/* ======================
-   Theme Variables
-====================== */
-
 :root {
   --bg-main: #f4f6f8;
   --bg-card: #ffffff;
@@ -21,7 +17,6 @@
   --border: #e2e6eb;
 }
 
-/* Dark Theme */
 [data-theme="dark"] {
   --bg-main: #0b1220;
   --bg-card: #111827;
@@ -31,7 +26,6 @@
   --border: #1f2933;
 }
 
-/* Paper Theme */
 [data-theme="paper"] {
   --bg-main: #fbf7f2;
   --bg-card: #ffffff;
@@ -40,10 +34,6 @@
   --text-muted: #6b5e53;
   --border: #e5dccc;
 }
-
-/* ======================
-   Base Styles
-====================== */
 
 * { box-sizing: border-box; }
 
@@ -89,7 +79,7 @@ li { margin: 8px 0; }
   top: 18px;
   right: 24px;
   display: flex;
-  gap: 14px;
+  gap: 12px;
   font-size: 0.85rem;
 }
 
@@ -111,12 +101,16 @@ li { margin: 8px 0; }
   margin-top: 28px;
 }
 
-footer {
-  margin-top: 120px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
+a.btn {
+  display: inline-block;
+  margin-top: 12px;
+  margin-right: 8px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: var(--bg-dark);
+  color: #fff;
+  text-decoration: none;
   font-size: 0.9rem;
-  color: var(--text-muted);
 }
 
 input[type="email"] {
@@ -141,6 +135,14 @@ button {
   cursor: pointer;
 }
 
+footer {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
 @media (max-width: 600px) {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.4rem; }
@@ -156,26 +158,19 @@ button {
 
 <section class="hero">
   <div class="controls">
-    <!-- Language -->
     <span data-lang="zh">中文</span>
     <span data-lang="en" class="active">EN</span>
     <span data-lang="ja">日本語</span>
     |
-    <!-- Theme -->
     <span data-theme-btn="light" class="active">Light</span>
     <span data-theme-btn="dark">Dark</span>
     <span data-theme-btn="paper">Paper</span>
   </div>
 
-  <p class="muted" data-i18n="company">Boundary Lab · Decision Safety Infrastructure</p>
-  <h1 data-i18n="title">Decision Safety Infrastructure</h1>
-  <p class="muted" data-i18n="subtitle">
-    Not a trading tool · No strategies · No profit promises
-  </p>
-  <p data-i18n="hero">
-    We protect long-term rationality<br/>
-    in high-risk environments.
-  </p>
+  <p class="muted" data-i18n="company"></p>
+  <h1 data-i18n="title"></h1>
+  <p class="muted" data-i18n="subtitle"></p>
+  <p data-i18n="hero"></p>
 </section>
 
 <section>
@@ -189,21 +184,29 @@ button {
 </section>
 
 <section>
-  <h2 data-i18n="product_title"></h2>
+  <h2 data-i18n="product_entry_title"></h2>
+  <p class="muted" data-i18n="product_entry_desc"></p>
 
   <div class="card">
     <h3 data-i18n="fw_title"></h3>
     <p data-i18n="fw_desc"></p>
+    <p class="muted" data-i18n="fw_status"></p>
+    <a class="btn" href="firewall.html" data-i18n="btn_view"></a>
+    <a class="btn" href="download/firewall.zip" data-i18n="btn_download"></a>
   </div>
 
   <div class="card">
     <h3 data-i18n="rl_title"></h3>
     <p data-i18n="rl_desc"></p>
+    <p class="muted" data-i18n="rl_status"></p>
+    <a class="btn" href="research.html" data-i18n="btn_view"></a>
   </div>
 
   <div class="card">
     <h3 data-i18n="ex_title"></h3>
     <p data-i18n="ex_desc"></p>
+    <p class="muted" data-i18n="ex_status"></p>
+    <a class="btn" href="execution.html" data-i18n="btn_view"></a>
   </div>
 </section>
 
@@ -222,9 +225,6 @@ button {
 </main>
 
 <script>
-/* ======================
-   Language
-====================== */
 const i18n = {
   en: {
     company: "Boundary Lab · Decision Safety Infrastructure",
@@ -235,14 +235,20 @@ const i18n = {
     p1: "You knew you should not add risk.",
     p2: "You knew you should stop.",
     p3: "You knew the risk was excessive.",
-    problem_summary: "The problem is behavior under emotional pressure.",
-    product_title: "Three-Layer System",
-    fw_title: "Trading Firewall",
-    fw_desc: "Enforces rules defined in calm moments.",
-    rl_title: "Research Lab",
-    rl_desc: "Validates whether strategies risk elimination.",
+    problem_summary: "The real problem is behavior under emotional pressure.",
+    product_entry_title: "What we have built",
+    product_entry_desc: "These principles are implemented as real, usable systems.",
+    fw_title: "Trading Behavior Firewall",
+    fw_desc: "Enforces rules you define in calm moments, especially when you are not.",
+    fw_status: "Available now · Desktop / Local version",
+    rl_title: "Strategy Research Lab",
+    rl_desc: "Tests whether a strategy can survive, not whether it looks profitable.",
+    rl_status: "Included · No separate download",
     ex_title: "Execution Adapter",
-    ex_desc: "Optional execution under strict rules.",
+    ex_desc: "Optional execution layer under strict rules.",
+    ex_status: "Optional module · Documentation available",
+    btn_view: "View product",
+    btn_download: "Download",
     mail_title: "Boundary Lab · Research Letters",
     mail_desc: "Long-term observations on risk and behavior.",
     mail_ph: "Your email address",
@@ -259,13 +265,19 @@ const i18n = {
     p2: "明知道该停手",
     p3: "明知道风险过大",
     problem_summary: "真正的问题是情绪下的行为。",
-    product_title: "三层系统结构",
-    fw_title: "交易防火墙",
-    fw_desc: "强制执行你在冷静时设定的规则。",
+    product_entry_title: "我们已经做成了什么",
+    product_entry_desc: "这些原则已经被实现为可以直接使用的软件。",
+    fw_title: "交易行为防火墙",
+    fw_desc: "在你失控时，强制执行你冷静时设定的规则。",
+    fw_status: "已可使用 · 本地 / 桌面版本",
     rl_title: "策略研究工具",
     rl_desc: "验证策略是否可能导致出局。",
+    rl_status: "包含在系统中 · 无单独下载",
     ex_title: "执行接口",
     ex_desc: "在规则前提下减少执行失误。",
+    ex_status: "可选模块 · 提供文档",
+    btn_view: "查看产品",
+    btn_download: "下载",
     mail_title: "Boundary Lab · 长期研究邮件",
     mail_desc: "分享真实风险路径与行为案例。",
     mail_ph: "你的邮箱地址",
@@ -278,17 +290,23 @@ const i18n = {
     subtitle: "取引ツールではありません · 利益保証なし",
     hero: "高リスク環境で<br/>長期的理性を守る。",
     problem_title: "失敗は知識不足ではない",
-    p1: "リスクを増やすべきでなかった",
+    p1: "リスクを増やすべきではなかった",
     p2: "止めるべきだった",
     p3: "危険すぎたと分かっていた",
-    problem_summary: "感情下の行動が問題です。",
-    product_title: "三層システム",
+    problem_summary: "問題は感情下の行動です。",
+    product_entry_title: "構築済みの製品",
+    product_entry_desc: "原則は実際に使えるシステムとして実装されています。",
     fw_title: "トレーディング・ファイアウォール",
     fw_desc: "冷静な時に決めたルールを強制。",
+    fw_status: "利用可能 · ローカル版",
     rl_title: "リサーチラボ",
-    rl_desc: "致命的戦略を検証。",
+    rl_desc: "戦略が致命的かを検証。",
+    rl_status: "同梱 · 個別配布なし",
     ex_title: "実行アダプター",
     ex_desc: "厳格なルール下の実行。",
+    ex_status: "オプション · ドキュメント提供",
+    btn_view: "詳細を見る",
+    btn_download: "ダウンロード",
     mail_title: "Boundary Lab · 研究レター",
     mail_desc: "誇張なしの長期考察。",
     mail_ph: "メールアドレス",
@@ -310,9 +328,6 @@ function setLang(lang) {
   localStorage.setItem("lang", lang);
 }
 
-/* ======================
-   Theme
-====================== */
 function setTheme(theme) {
   document.body.setAttribute("data-theme", theme);
   document.querySelectorAll("[data-theme-btn]").forEach(el => {
@@ -324,7 +339,6 @@ function setTheme(theme) {
 document.querySelectorAll("[data-lang]").forEach(el =>
   el.onclick = () => setLang(el.dataset.lang)
 );
-
 document.querySelectorAll("[data-theme-btn]").forEach(el =>
   el.onclick = () => setTheme(el.dataset.themeBtn)
 );
