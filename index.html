@@ -1,378 +1,612 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DriftGuide Privacy Policy · 隐私政策</title>
+  <meta name="description" content="Privacy Policy for DriftGuide — bedtime wind-down app. Local-first, no audio recording." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-elevated: #0c0c0c;
+      --surface: #121214;
+      --fg: #e8e8e8;
+      --muted: #8f8f8f;
+      --faint: #585858;
+      --line: #222222;
+      --stroke: #2c2c2c;
+      --accent: #c4b8a4;
+      --accent-soft: rgba(196, 184, 164, 0.12);
+      --glow: rgba(90, 110, 140, 0.18);
+      --radius: 16px;
+      --font-display: "Cormorant Garamond", "Songti SC", "STSong", Georgia, serif;
+      --font-body: "Outfit", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    }
 
-<title>Boundary Lab · Decision Safety Infrastructure</title>
-<meta name="description" content="Boundary Lab is a decision safety infrastructure company. We protect long-term rationality through rules.">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-<style>
-:root {
-  --bg-main: #f4f6f8;
-  --bg-card: #ffffff;
-  --bg-dark: #0b1220;
-  --text-main: #0b1220;
-  --text-muted: #5b6472;
-  --border: #e2e6eb;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
 
-[data-theme="dark"] {
-  --bg-main: #0b1220;
-  --bg-card: #111827;
-  --bg-dark: #020617;
-  --text-main: #e5e7eb;
-  --text-muted: #9ca3af;
-  --border: #1f2933;
-}
+    /* Atmosphere */
+    .sky {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% -15%, rgba(70, 85, 120, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 85% 20%, rgba(100, 90, 70, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 35% at 10% 60%, rgba(50, 70, 100, 0.1) 0%, transparent 55%),
+        linear-gradient(180deg, #0a0a0e 0%, var(--bg) 40%, #030303 100%);
+    }
 
-[data-theme="paper"] {
-  --bg-main: #fbf7f2;
-  --bg-card: #ffffff;
-  --bg-dark: #2b2118;
-  --text-main: #2b2118;
-  --text-muted: #6b5e53;
-  --border: #e5dccc;
-}
+    .sky::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.45;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.55), transparent),
+        radial-gradient(1px 1px at 28% 42%, rgba(255,255,255,0.35), transparent),
+        radial-gradient(1.5px 1.5px at 48% 12%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 72% 28%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 88% 48%, rgba(255,255,255,0.45), transparent),
+        radial-gradient(1px 1px at 18% 72%, rgba(255,255,255,0.25), transparent),
+        radial-gradient(1.5px 1.5px at 62% 78%, rgba(255,255,255,0.35), transparent),
+        radial-gradient(1px 1px at 40% 88%, rgba(255,255,255,0.2), transparent);
+    }
 
-* { box-sizing: border-box; }
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 24px 96px;
+    }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei",
-    "Noto Sans JP", Arial, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
-  line-height: 1.75;
-}
+    /* Top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      margin: 0 -8px 8px;
+      padding-left: 8px;
+      padding-right: 8px;
+      background: linear-gradient(180deg, rgba(5,5,5,0.92) 40%, rgba(5,5,5,0) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
 
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 72px 20px;
-}
+    .topbar .mark {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+    }
 
-section { margin-bottom: 96px; }
+    .lang {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
 
-h1 { font-size: 2.6rem; margin-bottom: 12px; }
-h2 { font-size: 1.7rem; margin-bottom: 16px; }
-h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .lang a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+    }
 
-p { margin: 12px 0; }
-ul { padding-left: 20px; }
-li { margin: 8px 0; }
+    .lang a:hover { color: var(--fg); }
+    .lang a:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 2px;
+    }
 
-.muted { color: var(--text-muted); }
+    /* Hero */
+    header.hero {
+      padding: 48px 0 40px;
+      animation: rise 0.9s ease-out both;
+    }
 
-.hero {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 64px 36px;
-  position: relative;
-}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 20px;
+    }
 
-.controls {
-  position: absolute;
-  top: 18px;
-  right: 24px;
-  display: flex;
-  gap: 12px;
-  font-size: 0.85rem;
-}
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
 
-.controls span {
-  cursor: pointer;
-  color: var(--text-muted);
-}
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 7vw, 52px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 16px;
+      color: var(--fg);
+    }
 
-.controls span.active {
-  color: var(--text-main);
-  font-weight: 600;
-}
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
 
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 28px;
-  margin-top: 28px;
-}
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 36em;
+    }
 
-a.btn {
-  display: inline-block;
-  margin-top: 12px;
-  margin-right: 8px;
-  padding: 10px 18px;
-  border-radius: 6px;
-  background: var(--bg-dark);
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
+    /* Promise strip */
+    .promises {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 36px 0 0;
+      animation: rise 1s 0.12s ease-out both;
+    }
 
-input[type="email"] {
-  width: 100%;
-  max-width: 360px;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-main);
-}
+    .promise {
+      padding: 18px 16px;
+      background: linear-gradient(160deg, rgba(18,18,20,0.9), rgba(10,10,12,0.7));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      text-align: center;
+      transition: border-color 0.25s, transform 0.25s;
+    }
 
-button {
-  margin-top: 12px;
-  padding: 12px 26px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  background: var(--bg-dark);
-  color: #fff;
-  cursor: pointer;
-}
+    .promise:hover {
+      border-color: var(--stroke);
+      transform: translateY(-2px);
+    }
 
-footer {
-  margin-top: 120px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
+    .promise strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
 
-@media (max-width: 600px) {
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.4rem; }
-  main { padding: 48px 16px; }
-  .hero { padding: 36px 22px; }
-  .controls { top: 12px; right: 16px; }
-}
-</style>
+    .promise span {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* Note */
+    .note {
+      margin: 36px 0 0;
+      padding: 20px 22px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(196, 184, 164, 0.22);
+      border-radius: var(--radius);
+      color: #c8c4bc;
+      font-size: 14.5px;
+      line-height: 1.65;
+      animation: rise 1s 0.2s ease-out both;
+    }
+
+    .note strong { color: var(--fg); font-weight: 500; }
+
+    /* Sections */
+    .panel {
+      margin-top: 48px;
+      animation: rise 1s 0.28s ease-out both;
+    }
+
+    .panel-label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-label h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .panel-label .tag {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    article {
+      margin: 0 0 28px;
+      padding: 24px 24px 22px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: border-color 0.2s;
+    }
+
+    article:hover { border-color: var(--stroke); }
+
+    article h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    article h3 .num {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      opacity: 0.85;
+      min-width: 1.6em;
+    }
+
+    p { margin: 0 0 12px; color: #c8c8cc; }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin: 0;
+      padding: 10px 0 10px 18px;
+      color: #c8c8cc;
+      border-bottom: 1px solid rgba(34, 34, 34, 0.85);
+    }
+
+    li:last-child { border-bottom: 0; padding-bottom: 0; }
+    li:first-child { padding-top: 4px; }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.15em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.55;
+    }
+
+    li strong { color: var(--fg); font-weight: 500; }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196, 184, 164, 0.35);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #ddd4c4;
+      border-bottom-color: var(--accent);
+    }
+
+    em.placeholder {
+      font-style: normal;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+
+    .divider {
+      height: 1px;
+      margin: 56px 0;
+      background: linear-gradient(90deg, transparent, var(--stroke), transparent);
+      border: 0;
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      color: var(--faint);
+      font-size: 13px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    footer p { color: inherit; margin: 0; }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .promises { grid-template-columns: 1fr; }
+      .promise { text-align: left; display: flex; align-items: baseline; gap: 12px; padding: 14px 16px; }
+      .promise strong { margin: 0; font-size: 18px; }
+      article { padding: 20px 18px; }
+      header.hero { padding-top: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
 
-<body data-theme="light">
-<main>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="mark" href="#">DriftGuide</a>
+      <nav class="lang" aria-label="Language">
+        <a href="#zh">中文</a>
+        <a href="#en">EN</a>
+      </nav>
+    </div>
 
-<section class="hero">
-  <div class="controls">
-    <span data-lang="zh">中文</span>
-    <span data-lang="en" class="active">EN</span>
-    <span data-lang="ja">日本語</span>
-    |
-    <span data-theme-btn="light" class="active">Light</span>
-    <span data-theme-btn="dark">Dark</span>
-    <span data-theme-btn="paper">Paper</span>
+    <header class="hero">
+      <p class="eyebrow">Quiet by design</p>
+      <h1>隐私政策 <em>/ Privacy</em></h1>
+      <p class="meta">生效日期 / Effective date: 2026-08-14 · 适用于 iOS 应用 DriftGuide</p>
+
+      <div class="promises" role="list">
+        <div class="promise" role="listitem">
+          <strong>本地优先</strong>
+          <span>On-device first</span>
+        </div>
+        <div class="promise" role="listitem">
+          <strong>不录音</strong>
+          <span>No audio saved</span>
+        </div>
+        <div class="promise" role="listitem">
+          <strong>不出售数据</strong>
+          <span>Never sold</span>
+        </div>
+      </div>
+
+      <p class="note">
+        DriftGuide 是入睡前放松与引导工具，<strong>不是医疗设备</strong>，不提供诊断或治疗。
+        Sleep scoring is heuristic only and is <strong>not medical advice</strong>.
+      </p>
+    </header>
+
+    <!-- ========== 中文 ========== -->
+    <section class="panel" id="zh" lang="zh-CN">
+      <div class="panel-label">
+        <h2>中文说明</h2>
+        <span class="tag">Chinese</span>
+      </div>
+
+      <article>
+        <h3><span class="num">01</span>我们是谁</h3>
+        <p>
+          本政策说明 DriftGuide（以下简称「本应用」）如何处理与您设备相关的信息。
+          开发者为 DriftGuide 的发布者（Apple App Store 所列卖家信息为准）。
+        </p>
+      </article>
+
+      <article>
+        <h3><span class="num">02</span>我们收集什么</h3>
+        <p>本应用以<strong>本地处理</strong>为主，默认<strong>不会</strong>把您的个人内容上传到我们的服务器。</p>
+        <ul>
+          <li><strong>偏好与会话记录</strong>：时长、语言、外观、所选环境声、引导完成情况、自愿评分等，保存在您的设备本地（如系统偏好存储）。</li>
+          <li><strong>自定义环境声文件</strong>（可选）：若您导入音频，文件仅保存在本应用的设备沙盒目录中。</li>
+          <li><strong>麦克风音量特征</strong>（可选「睡眠评分」）：仅在您开启并同意后使用。本应用分析实时音量水平以估计安静占比、疑似鼾声/梦话次数等聚合指标。<strong>不会录音，不会保存音频文件，也不会上传音频。</strong></li>
+          <li><strong>运动传感器</strong>（可选）：用于「面朝下结束引导」等功能，数据在设备本地瞬时使用，不上传。</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span class="num">03</span>我们如何使用信息</h3>
+        <ul>
+          <li>提供入睡前引导、环境声播放与界面偏好；</li>
+          <li>在您开启时生成本地「睡眠评分」洞察；</li>
+          <li>改进产品稳定性（若您通过系统渠道向我们反馈崩溃信息，以 Apple 机制为准）。</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span class="num">04</span>我们是否与第三方共享</h3>
+        <p>
+          我们<strong>不会出售</strong>您的个人数据。本应用当前不接入用于广告追踪的第三方分析 SDK。
+          若未来引入必要服务，我们将更新本政策并在适用法律要求时征得同意。
+        </p>
+        <p>
+          通过 Apple App Store / TestFlight 分发时，Apple 可能按其自身隐私政策处理购买、设备与诊断相关信息。请参阅
+          <a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple 隐私政策</a>。
+        </p>
+      </article>
+
+      <article>
+        <h3><span class="num">05</span>权限说明</h3>
+        <ul>
+          <li><strong>麦克风</strong>：仅用于可选的睡眠评分音量分析；可在系统设置中随时关闭。</li>
+          <li><strong>照片/文件/媒体库</strong>（若系统请求）：仅用于您主动导入环境声音频。</li>
+          <li><strong>后台音频</strong>：用于引导或环境声在锁屏时继续播放。</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span class="num">06</span>数据保存与删除</h3>
+        <p>
+          本地偏好与历史保存在您的设备上。卸载本应用通常会删除应用沙盒内数据。
+          您也可以在系统设置中撤销麦克风等权限。
+        </p>
+      </article>
+
+      <article>
+        <h3><span class="num">07</span>儿童隐私</h3>
+        <p>本应用不以儿童为主要对象。若您是监护人并认为儿童向我们提供了信息，请通过下方方式联系我们。</p>
+      </article>
+
+      <article>
+        <h3><span class="num">08</span>政策更新</h3>
+        <p>我们可能不时更新本政策。更新后会在本页面修订「生效日期」。重大变更时，我们可能通过应用内提示等方式告知。</p>
+      </article>
+
+      <article>
+        <h3><span class="num">09</span>联系我们</h3>
+        <p>
+          如有隐私相关问题，请通过 App Store 产品页的「App 支持」或开发者联系方式与我们联系。
+          （发布前请将此处替换为您的真实邮箱，例如：<em class="placeholder">your-email@example.com</em>）
+        </p>
+      </article>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ========== English ========== -->
+    <section class="panel" id="en" lang="en">
+      <div class="panel-label">
+        <h2>English</h2>
+        <span class="tag">Policy</span>
+      </div>
+
+      <article>
+        <h3><span class="num">01</span>Who we are</h3>
+        <p>
+          This Privacy Policy explains how DriftGuide (“the App”) handles information on your device.
+          The publisher is the seller listed on the Apple App Store product page.
+        </p>
+      </article>
+
+      <article>
+        <h3><span class="num">02</span>What we collect</h3>
+        <p>The App is designed for <strong>on-device processing</strong> and does <strong>not</strong> upload your personal content to our servers by default.</p>
+        <ul>
+          <li><strong>Preferences &amp; session history</strong>: duration, language, appearance, selected ambient sound, guide progress, optional ratings — stored locally on your device.</li>
+          <li><strong>Custom ambient audio</strong> (optional): if you import a sound file, it stays in the App’s local sandbox.</li>
+          <li><strong>Microphone level features</strong> (optional Sleep Score): used only when you enable the feature. The App analyzes live volume levels to estimate quiet ratio and possible snore/talk events. <strong>We do not record audio, save audio files, or upload audio.</strong></li>
+          <li><strong>Motion sensors</strong> (optional): used for features such as face-down to finish the guide; processed on device and not uploaded.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span class="num">03</span>How we use information</h3>
+        <ul>
+          <li>To provide the bedtime wind-down guide, ambient playback, and preferences;</li>
+          <li>To generate an on-device Sleep Score insight when enabled;</li>
+          <li>To improve stability if you send diagnostics through Apple’s channels.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span class="num">04</span>Sharing</h3>
+        <p>
+          We do <strong>not sell</strong> your personal data. The App does not currently include third-party advertising analytics SDKs.
+          If that changes, we will update this policy and obtain consent where required.
+        </p>
+        <p>
+          Distribution via the App Store / TestFlight means Apple may process purchase, device, and diagnostic data under
+          <a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple’s Privacy Policy</a>.
+        </p>
+      </article>
+
+      <article>
+        <h3><span class="num">05</span>Permissions</h3>
+        <ul>
+          <li><strong>Microphone</strong>: only for optional Sleep Score level analysis; you can revoke it in iOS Settings.</li>
+          <li><strong>Photos / files / media library</strong> (if prompted): only when you choose to import ambient audio.</li>
+          <li><strong>Background audio</strong>: so guidance or ambient sound can continue while the screen is locked.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span class="num">06</span>Retention &amp; deletion</h3>
+        <p>
+          Local preferences and history remain on your device. Uninstalling the App typically removes its sandbox data.
+          You may also revoke permissions in system settings.
+        </p>
+      </article>
+
+      <article>
+        <h3><span class="num">07</span>Children</h3>
+        <p>The App is not directed at children. If you believe a child has provided information to us, please contact us.</p>
+      </article>
+
+      <article>
+        <h3><span class="num">08</span>Changes</h3>
+        <p>We may update this policy and will revise the effective date on this page. Material changes may be noted in the App.</p>
+      </article>
+
+      <article>
+        <h3><span class="num">09</span>Contact</h3>
+        <p>
+          For privacy questions, use App Support on the App Store product page or the developer contact listed there.
+          (Replace this with your real email before publishing, e.g. <em class="placeholder">your-email@example.com</em>.)
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      <p>© DriftGuide · For App Store privacy disclosures and user transparency.</p>
+    </footer>
   </div>
-
-  <p class="muted" data-i18n="company"></p>
-  <h1 data-i18n="title"></h1>
-  <p class="muted" data-i18n="subtitle"></p>
-  <p data-i18n="hero"></p>
-</section>
-
-<section>
-  <h2 data-i18n="problem_title"></h2>
-  <ul>
-    <li data-i18n="p1"></li>
-    <li data-i18n="p2"></li>
-    <li data-i18n="p3"></li>
-  </ul>
-  <p data-i18n="problem_summary"></p>
-</section>
-
-<section>
-  <h2 data-i18n="product_entry_title"></h2>
-  <p class="muted" data-i18n="product_entry_desc"></p>
-
-  <div class="card">
-    <h3 data-i18n="fw_title"></h3>
-    <p data-i18n="fw_desc"></p>
-    <p class="muted" data-i18n="fw_status"></p>
-    <a class="btn" href="firewall.html" data-i18n="btn_view"></a>
-    <a class="btn" href="download/firewall.zip" data-i18n="btn_download"></a>
-  </div>
-
-  <div class="card">
-    <h3 data-i18n="rl_title"></h3>
-    <p data-i18n="rl_desc"></p>
-    <p class="muted" data-i18n="rl_status"></p>
-    <a class="btn" href="research.html" data-i18n="btn_view"></a>
-  </div>
-
-  <div class="card">
-    <h3 data-i18n="ex_title"></h3>
-    <p data-i18n="ex_desc"></p>
-    <p class="muted" data-i18n="ex_status"></p>
-    <a class="btn" href="execution.html" data-i18n="btn_view"></a>
-  </div>
-</section>
-<section>
-  <h2 data-i18n="dalio_title"></h2>
-
-  <div class="card">
-    <p data-i18n="dalio_p1"></p>
-    <p data-i18n="dalio_p2"></p>
-    <p data-i18n="dalio_p3"></p>
-    <p data-i18n="dalio_p4"></p>
-  </div>
-</section>
-
-<section>
-  <h2 data-i18n="mail_title"></h2>
-  <p data-i18n="mail_desc"></p>
-  <input type="email" data-i18n-placeholder="mail_ph" />
-  <br/>
-  <button data-i18n="mail_btn"></button>
-</section>
-
-<footer>
-  <p data-i18n="footer"></p>
-</footer>
-
-</main>
-
-<script>
-const i18n = {
-  en: {
-    company: "Boundary Lab · Decision Safety Infrastructure",
-    title: "Decision Safety Infrastructure",
-    subtitle: "Not a trading tool · No strategies · No profit promises",
-    hero: "We protect long-term rationality<br/>in high-risk environments.",
-    problem_title: "Failure is rarely about knowledge",
-    p1: "You knew you should not add risk.",
-    p2: "You knew you should stop.",
-    p3: "You knew the risk was excessive.",
-    problem_summary: "The real problem is behavior under emotional pressure.",
-    product_entry_title: "What we have built",
-    product_entry_desc: "These principles are implemented as real, usable systems.",
-    fw_title: "Trading Behavior Firewall",
-    fw_desc: "Enforces rules you define in calm moments, especially when you are not.",
-    fw_status: "Available now · Desktop / Local version",
-    rl_title: "Strategy Research Lab",
-    rl_desc: "Tests whether a strategy can survive, not whether it looks profitable.",
-    rl_status: "Included · No separate download",
-    ex_title: "Execution Adapter",
-    ex_desc: "Optional execution layer under strict rules.",
-    ex_status: "Optional module · Documentation available",
-    btn_view: "View product",
-    btn_download: "Download",
-    mail_title: "Boundary Lab · Research Letters",
-    mail_desc: "Long-term observations on risk and behavior.",
-    mail_ph: "Your email address",
-    mail_btn: "Subscribe",
-    footer: "© 2026 Boundary Lab. All rights reserved.",
-    dalio_title: "Why We Are Influenced by Ray Dalio",
-    dalio_p1: "Boundary Lab’s design philosophy has been influenced by Ray Dalio’s long-standing work in risk management and systems thinking.",
-    dalio_p2: "This influence does not come from specific trading views or investment conclusions, but from a more fundamental idea: the primary goal of any system is not to maximize returns, but to ensure survival across all conditions.",
-    dalio_p3: "In Dalio’s work, risk is defined not as volatility itself, but as outcomes that cannot be tolerated if they occur.",
-    dalio_p4: "Rather than replicating any methods or conclusions, we focus on engineering the principles of survival-first, worst-case-first, and rules over emotion into an executable decision safety system."
-
-  },
-  zh: {
-    company: "Boundary Lab · 边界实验室",
-    title: "交易行为安全系统",
-    subtitle: "不是交易工具 · 不卖策略 · 不承诺收益",
-    hero: "在高风险环境中<br/>用规则，保护长期理性。",
-    problem_title: "失败，往往不是因为不懂",
-    p1: "明知道不该加仓",
-    p2: "明知道该停手",
-    p3: "明知道风险过大",
-    problem_summary: "真正的问题是情绪下的行为。",
-    product_entry_title: "我们已经做成了什么",
-    product_entry_desc: "这些原则已经被实现为可以直接使用的软件。",
-    fw_title: "交易行为防火墙",
-    fw_desc: "在你失控时，强制执行你冷静时设定的规则。",
-    fw_status: "已可使用 · 本地 / 桌面版本",
-    rl_title: "策略研究工具",
-    rl_desc: "验证策略是否可能导致出局。",
-    rl_status: "包含在系统中 · 无单独下载",
-    ex_title: "执行接口",
-    ex_desc: "在规则前提下减少执行失误。",
-    ex_status: "可选模块 · 提供文档",
-    btn_view: "查看产品",
-    btn_download: "下载",
-    mail_title: "Boundary Lab · 长期研究邮件",
-    mail_desc: "分享真实风险路径与行为案例。",
-    mail_ph: "你的邮箱地址",
-    mail_btn: "免费订阅",
-    footer: "© 2026 Boundary Lab｜边界实验室",
-    dalio_title: "我们为什么受瑞·达利欧影响",
-    dalio_p1: "Boundary Lab 的设计思想，受到瑞·达利欧（Ray Dalio）在风险管理与系统思维方面的长期影响。",
-    dalio_p2: "这种影响并不来自某一条交易观点或投资结论，而来自一个更基础的理念：任何系统的第一目标，不是追求更高回报，而是确保在所有环境下不会被淘汰。",
-    dalio_p3: "在达利欧的研究与实践中，风险被定义为那些一旦发生就无法承受的结果，而不是短期波动本身。",
-    dalio_p4: "我们并不试图复制任何方法或结论，而是将“生存优先、最坏情况优先、规则高于情绪”的原则，工程化为一种可被执行的决策与行为安全系统。"
-
-  },
-  ja: {
-    company: "Boundary Lab · 境界研究所",
-    title: "意思決定安全インフラ",
-    subtitle: "取引ツールではありません · 利益保証なし",
-    hero: "高リスク環境で<br/>長期的理性を守る。",
-    problem_title: "失敗は知識不足ではない",
-    p1: "リスクを増やすべきではなかった",
-    p2: "止めるべきだった",
-    p3: "危険すぎたと分かっていた",
-    problem_summary: "問題は感情下の行動です。",
-    product_entry_title: "構築済みの製品",
-    product_entry_desc: "原則は実際に使えるシステムとして実装されています。",
-    fw_title: "トレーディング・ファイアウォール",
-    fw_desc: "冷静な時に決めたルールを強制。",
-    fw_status: "利用可能 · ローカル版",
-    rl_title: "リサーチラボ",
-    rl_desc: "戦略が致命的かを検証。",
-    rl_status: "同梱 · 個別配布なし",
-    ex_title: "実行アダプター",
-    ex_desc: "厳格なルール下の実行。",
-    ex_status: "オプション · ドキュメント提供",
-    btn_view: "詳細を見る",
-    btn_download: "ダウンロード",
-    mail_title: "Boundary Lab · 研究レター",
-    mail_desc: "誇張なしの長期考察。",
-    mail_ph: "メールアドレス",
-    mail_btn: "登録",
-    dalio_title: "なぜレイ・ダリオの思想に影響を受けているのか",
-    dalio_p1: "Boundary Lab の設計思想は、リスク管理とシステム思考におけるレイ・ダリオの長年の研究に影響を受けています。",
-    dalio_p2: "その影響は特定の取引手法や投資結論ではなく、より根本的な考え方に基づいています。すなわち、あらゆるシステムの第一の目的は、利益最大化ではなく、あらゆる環境で生き残ることです。",
-    dalio_p3: "ダリオの思想では、リスクとは短期的な変動ではなく、発生した場合に受け入れられない結果を指します。",
-    dalio_p4: "私たちは手法や結論を模倣するのではなく、「生存優先」「最悪ケース優先」「感情よりルール」という原則を、実行可能な意思決定安全システムとして実装しています。",
-    footer: "© 2026 Boundary Lab"
-  }
-};
-
-function setLang(lang) {
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    el.innerHTML = i18n[lang][el.dataset.i18n];
-  });
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-    el.placeholder = i18n[lang][el.dataset.i18nPlaceholder];
-  });
-  document.querySelectorAll("[data-lang]").forEach(el => {
-    el.classList.toggle("active", el.dataset.lang === lang);
-  });
-  localStorage.setItem("lang", lang);
-}
-
-function setTheme(theme) {
-  document.body.setAttribute("data-theme", theme);
-  document.querySelectorAll("[data-theme-btn]").forEach(el => {
-    el.classList.toggle("active", el.dataset.themeBtn === theme);
-  });
-  localStorage.setItem("theme", theme);
-}
-
-document.querySelectorAll("[data-lang]").forEach(el =>
-  el.onclick = () => setLang(el.dataset.lang)
-);
-document.querySelectorAll("[data-theme-btn]").forEach(el =>
-  el.onclick = () => setTheme(el.dataset.themeBtn)
-);
-
-setLang(localStorage.getItem("lang") || "en");
-setTheme(localStorage.getItem("theme") || "light");
-</script>
-
 </body>
 </html>
